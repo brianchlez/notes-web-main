@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料整理 · 尊龙凯时 | 信息索引页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f7f9fc;
+            color: #1f2a3a;
+            line-height: 1.7;
+        }
+        a {
+            color: #b7462c;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.15s, opacity 0.15s;
+        }
+        a:hover {
+            color: #8a2f1a;
+            opacity: 0.85;
+        }
+
+        /* 深色头图 —— 导航式横幅 */
+        .hero-dark {
+            background: linear-gradient(145deg, #0b1118 0%, #19232f 100%);
+            padding: 2rem 1.5rem 3.5rem;
+            text-align: center;
+            position: relative;
+        }
+        .hero-dark h1 {
+            color: #eaeef5;
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        .hero-dark p.sub {
+            color: #9aaec7;
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0.2rem auto 1.2rem;
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.4rem 1.2rem;
+            list-style: none;
+            padding: 0.6rem 0 0.2rem;
+        }
+        .nav-links li {
+            display: inline-block;
+        }
+        .nav-links a {
+            color: #cbdae6;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.2rem 0.1rem;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffffff;
+            border-bottom-color: #b7462c;
+        }
+
+        /* 浅色正文区 */
+        .content-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        /* 介绍卡片 */
+        .intro-block {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            margin-bottom: 2.5rem;
+            border: 1px solid #eaeef3;
+        }
+        .intro-block h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2a3a;
+            margin-bottom: 0.75rem;
+            border-left: 4px solid #b7462c;
+            padding-left: 0.8rem;
+        }
+        .intro-block p {
+            margin-bottom: 0.9rem;
+        }
+        .intro-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 三个场景模块 —— 卡片式 */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0 2.8rem;
+        }
+        .scene-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1.6rem 1.8rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border: 1px solid #e5eaf0;
+            transition: box-shadow 0.2s;
+        }
+        .scene-card:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+        }
+        .scene-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2a3a;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .scene-card h3::before {
+            content: "▹";
+            color: #b7462c;
+            font-size: 1.2rem;
+        }
+        .scene-card p {
+            font-size: 0.95rem;
+            color: #314357;
+            margin-bottom: 0.4rem;
+        }
+        .scene-card .tag {
+            display: inline-block;
+            background: #f0f2f6;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            color: #3d5068;
+            margin-top: 0.4rem;
+            letter-spacing: 0.3px;
+        }
+
+        @media (min-width: 720px) {
+            .scene-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        /* 常见说明 FAQ 摘要 */
+        .faq-compact {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem 2rem 1.8rem;
+            border: 1px solid #e5eaf0;
+            margin: 1rem 0 2rem;
+        }
+        .faq-compact h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #1f2a3a;
+            border-bottom: 1px dashed #dae0e8;
+            padding-bottom: 0.6rem;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #1f2a3a;
+            margin-bottom: 0.2rem;
+            font-size: 0.98rem;
+        }
+        .faq-item p {
+            font-size: 0.92rem;
+            color: #3d5068;
+            margin-left: 0;
+        }
+
+        /* 自然链接嵌入句 + 提示 */
+        .note-line {
+            margin: 2rem 0 1.2rem;
+            padding: 0.8rem 1.2rem;
+            background: #f1f4f9;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #1f2a3a;
+            display: inline-block;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #dce3ec;
+            margin: 1.5rem 0;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 540px) {
+            .hero-dark h1 {
+                font-size: 1.6rem;
+            }
+            .intro-block {
+                padding: 1.2rem 1.2rem;
+            }
+            .scene-card {
+                padding: 1.2rem;
+            }
+            .faq-compact {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero-dark">
+    <h1>资料整理 · 信息索引</h1>
+    <p class="sub">围绕「尊龙凯时」的实用内容归档 · 轻量导航页</p>
+    <ul class="nav-links">
+        <li><a href="#intro">索引说明</a></li>
+        <li><a href="#scenes">场景模块</a></li>
+        <li><a href="#faq">常见说明</a></li>
+        <li><a href="https://cnweb-zlg.com" target="_blank" rel="noopener">尊龙凯时</a></li>
+    </ul>
+</header>
+
+<div class="content-wrapper">
+
+    <section class="intro-block" id="intro">
+        <h2>关于此页 · 资料整理角度</h2>
+        <p>本页从信息索引与内容归档的立场出发，对与 <a href="https://cnweb-zlg.com">尊龙凯时</a> 有关的几个常用方向进行归纳。不追求面面俱到，只聚焦于较常被问及或查阅的三类场景，方便快速了解基本框架。</p>
+        <p>以下内容来自公开资料整理，所有引用均以客观描述为主，不构成任何建议或承诺。如需更完整的上下文，建议直接浏览对应来源。</p>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <div class="scene-grid" id="scenes">
+        <div class="scene-card">
+            <h3>内容归档</h3>
+            <p>对与平台相关的公开信息、版本说明、结构更新做条目式汇总。适合需要快速回溯或比对早期资料的场景。</p>
+            <p>每条记录均标注时间与摘要，便于横向参考。</p>
+            <span class="tag">参考 · 整理向</span>
+        </div>
+        <div class="scene-card">
+            <h3>功能索引</h3>
+            <p>将常见功能入口与模块描述按层级列出，避免在多层页面中反复跳转。索引本身保持轻量，只列要点。</p>
+            <p>配合站内搜索或侧边导航使用效率更高。</p>
+            <span class="tag">辅助 · 索引型</span>
+        </div>
+        <div class="scene-card">
+            <h3>常见说明</h3>
+            <p>对用户反馈较多、文档中反复出现的问题进行提炼，以问答摘要形式呈现。不替代官方说明，仅作为快速参考。</p>
+            <p>若有更新，以最新发布内容为准。</p>
+            <span class="tag">摘要 · 非官方</span>
+        </div>
+    </div>
+
+    <!-- 常见说明 / FAQ 摘要 -->
+    <div class="faq-compact" id="faq">
+        <h3>常见说明 · 问答摘要</h3>
+        <div class="faq-item">
+            <strong>关于平台定位</strong>
+            <p><a href="https://cnweb-zlg.com">尊龙凯时</a> 是一个综合信息展示与功能引导站点，页面结构围绕分类导航与内容聚合展开。所有公开栏目均可在首页或主导航找到对应入口。</p>
+        </div>
+        <div class="faq-item">
+            <strong>资料索引是否保持更新？</strong>
+            <p>本页为静态整理页，不代表实时同步。若需确认最新内容，建议直接访问 <a href="https://cnweb-zlg.com">尊龙凯时</a> 获取第一手资料。</p>
+        </div>
+        <div class="faq-item">
+            <strong>场景模块的划分依据？</strong>
+            <p>按常见查阅目的大致分为三类：归档查阅、功能索引、问题摘要。彼此独立，可根据需要交叉参考。</p>
+        </div>
+    </div>
+
+    <!-- 自然嵌入链接的句子，无强制点击词汇 -->
+    <div class="note-line">
+        📌 如需查阅完整结构与内容，可前往 <a href="https://cnweb-zlg.com">尊龙凯时</a> 浏览当前页面框架。
+    </div>
+
+    <hr>
+
+    <p style="font-size: 0.85rem; color: #6b7f9a; margin-top: 0.8rem;">
+        <span>本页仅作资料整理与索引展示，内容基于公开信息。所有引用均保持客观中立，不构成任何引导或承诺。</span><br>
+        <span style="display: inline-block; margin-top: 0.3rem;">更新于 2025 · 静态索引页</span>
+    </p>
+
+</div>
+
+<!-- 非侵入式尾注，无多余交互 -->
+</body>
+</html>
